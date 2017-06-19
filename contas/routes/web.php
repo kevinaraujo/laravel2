@@ -16,3 +16,5 @@ Route::get('/', function () {
 });
 
 Route::get('/contas','ContasPagarController@listar');
+Route::get('/contas/cadastro','ContasPagarController@cadastro');
+Route::post('/contas/salvar','ContasPagarController@salvar');
