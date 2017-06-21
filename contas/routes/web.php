@@ -18,3 +18,6 @@ Route::get('/', function () {
 Route::get('/contas','ContasPagarController@listar');
 Route::get('/contas/cadastro','ContasPagarController@cadastro');
 Route::post('/contas/salvar','ContasPagarController@salvar');
+Route::get('/contas/editar/{id}','ContasPagarController@editar');
+Route::get('/contas/apagar/{id}','ContasPagarController@apagar');
+Route::post('/contas/update/{id}','ContasPagarController@update');
