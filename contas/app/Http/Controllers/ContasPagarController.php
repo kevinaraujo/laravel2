@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Request;
 use Illuminate\Support\Facades\DB;
 use App\ContasPagar;
+use Validator;
 
 class ContasPagarController extends Controller
 {
@@ -41,13 +42,31 @@ class ContasPagarController extends Controller
         $contas_pagar->valor = $valor;
         $contas_pagar->save();
 
-        return redirect()->action('ContasPagarController@listar');
+        return redirect()->action('ContasPagarController@listar')->withInput();
     }
 
     public function salvar(){
     	$descricao = Request::input('descricao');
     	$valor = Request::input('valor');
 
+        $validator = Validator::make(
+            [
+                'descricao'=> $descricao,
+                'valor' => $valor            
+            ],
+            [
+                'descricao' => 'required|min:6',
+                'valor' => 'required|numeric'
+            ],
+            [
+                'required' => ':attribute é obrigatório',
+                'numeric' => ':attribute precisa ser numérico'
+            ] 
+        );
+
+        if($validator->fails()){
+            return redirect()->action('ContasPagarController@cadastro')->withErrors($validator)->withInput();
+        }
     	//DB::insert('INSERT INTO contas_pagar(descricao,valor) VALUES(?,?)',
     	//array($descricao,$valor));
     	
@@ -56,11 +75,13 @@ class ContasPagarController extends Controller
     	$contas_pagar->valor = $valor;
     	$contas_pagar->save();
 
-    	return redirect()->action('ContasPagarController@listar');
+    	return redirect()->action('ContasPagarController@listar')->withInput();
     }
 
 
      public function apagar($id){
-       return view('editar');
+        $contas_pagar = ContasPagar::find($id)->delete();
+
+       return redirect()->action('ContasPagarController@listar');
     }
 }
