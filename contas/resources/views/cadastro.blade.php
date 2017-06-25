@@ -26,6 +26,5 @@
 	</div>
 	
 	<button type="submit" class="btn btn-success">Gravar</button>
-	
 </form>
 @endsection
