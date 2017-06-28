@@ -9,6 +9,10 @@ use Validator;
 
 class ContasPagarController extends Controller
 {
+    public function __construct(){
+       $this->middleware('auth');
+   }
+
     public function listar(){
     	$contas_pagar = ContasPagar::all();
 

@@ -37,7 +37,6 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li><a href="{{ url('/home') }}">Home</a></li>
-                         <li><a href="{{ url('/contas') }}">Contas</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -71,11 +70,8 @@
                 </div>
             </div>
         </nav>
-        <div class="container">
-    		<h1>Sistema de Gerenciamento de Clientes</h1>	
-			@yield('content')
-			<!-- MIOLO DO SITE -->
-		</div>
+
+        @yield('content')
     </div>
 
     <!-- Scripts -->
