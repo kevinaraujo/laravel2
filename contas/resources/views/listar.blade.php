@@ -20,7 +20,7 @@ function apagar(url){
 	</div>
 @endif
 
-<table width="100%" class="table table-stripped table-hover table-border">
+<table width="100%" class="table table-stripped table-hover table-bordered">
 	<tr>
 		<td>ID</td>
 		<td>Descrição</td>
